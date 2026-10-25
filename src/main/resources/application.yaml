@@ -1,0 +1,19 @@
+server:
+  port: 8765
+
+
+
+spring:
+  application:
+    name: ApiGateway
+
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: usuario
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/usuarios/**
+
