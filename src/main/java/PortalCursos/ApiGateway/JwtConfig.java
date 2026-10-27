@@ -11,26 +11,23 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Configuration
 public class JwtConfig {
+
+    @Value("${app.jwt.secret}")
+    private String segredo;
+
+
     @Bean
-    public JwtDecoder jwtDecoder(
-            @Value("${app.jwt.secret}") String segredo) {
+    public JwtDecoder jwtDecoder() {
 
-        byte[] keyBytes = Base64.getDecoder()
-                .decode(segredo);
+        byte[] secretBytes = segredo.getBytes(StandardCharsets.UTF_8);
+        SecretKey key = new SecretKeySpec(secretBytes, "HmacSHA256");
 
-        SecretKey segredoKey = new SecretKeySpec(
-                keyBytes,
-                "HmacSHA256"
-        );
-
-        return NimbusJwtDecoder
-                .withSecretKey(segredoKey)
-                .macAlgorithm(MacAlgorithm.HS256)
-                .build();
+        return NimbusJwtDecoder.withSecretKey(key).build();
     }
 
     @Bean
