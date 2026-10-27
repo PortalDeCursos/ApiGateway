@@ -6,6 +6,24 @@ app:
     secret: ${JWT_SECRET:14I15oujcYSvV7r7Lghmg+HUMJ5n8YXDYmQoyHFiWMA=}
     expiration-ms: 86400000
 
+  rotas:
+    publicas:
+      - metodo: POST
+        caminho: /api/usuarios/auth/login
+      - metodo: GET
+        caminho: /api/usuarios/professores
+    regras:
+      - metodo: GET
+        caminho: /api/usuarios/alunos/**
+        papeis: [ALUNO, PROFESSOR, ADMIN]
+      - metodo: POST
+        caminho: /api/usuarios/alunos/**
+        papeis: [ADMIN]
+      - metodo: "*"
+        caminho: /api/usuarios/admin/**
+        papeis: [ADMIN]
+
+
 spring:
   application:
     name: ApiGateway
