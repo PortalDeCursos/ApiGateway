@@ -40,7 +40,7 @@ app:
 
       - metodo: POST
         caminho: /api/usuarios/professores
-        papeis: [ COORDENADOR, ADMIN ]
+        papeis: [COORDENADOR, ADMIN ]
       - metodo: GET
         caminho: /api/usuarios/professores/**
         papeis: [PROFESSOR, ADMIN, COORDENADOR, ALUNO]
@@ -53,16 +53,16 @@ app:
 
 
       - metodo: POST
-        caminho: /api/usuarios/admins
+        caminho: /api/usuarios/admin
         papeis: [ADMIN]
       - metodo: GET
-        caminho: /api/usuarios/admins/**
+        caminho: /api/usuarios/admin/**
         papeis: [ADMIN]
       - metodo: PUT
-        caminho: /api/usuarios/admins/{id}
+        caminho: /api/usuarios/admin/{id}
         papeis: [ADMIN]
       - metodo: DELETE
-        caminho: /api/usuarios/admins/{id}
+        caminho: /api/usuarios/admin/{id}
         papeis: [ADMIN]
 
 
