@@ -10,18 +10,62 @@ app:
     publicas:
       - metodo: POST
         caminho: /api/usuarios/auth/login
-      - metodo: GET
-        caminho: /api/usuarios/professores
-    regras:
-      - metodo: GET
-        caminho: /api/usuarios/alunos/**
-        papeis: [ALUNO, PROFESSOR, ADMIN]
       - metodo: POST
+        caminho: /api/usuarios/alunos
+
+    regras:
+
+      - metodo: GET
         caminho: /api/usuarios/alunos/**
+        papeis: [ALUNO, PROFESSOR,COORDENADOR ,ADMIN]
+      - metodo: PUT
+        caminho: /api/usuarios/alunos/{id}
+        papeis: [ALUNO, PROFESSOR,COORDENADOR, ADMIN]
+      - metodo: DELETE
+        caminho: /api/usuarios/alunos/{id}
+        papeis: [COORDENADOR, ADMIN]
+
+      - metodo: POST
+        caminho: /api/usuarios/coordenadores
         papeis: [ADMIN]
-      - metodo: "*"
-        caminho: /api/usuarios/admin/**
+      - metodo: GET
+        caminho: /api/usuarios/coordenadores/**
+        papeis: [COORDENADOR, ADMIN]
+      - metodo: PUT
+        caminho: /api/usuarios/coordenadores/{id}
+        papeis: [COORDENADOR, ADMIN]
+      - metodo: DELETE
+        caminho: /api/usuarios/coordenadores/{id}
         papeis: [ADMIN]
+
+      - metodo: POST
+        caminho: /api/usuarios/professores
+        papeis: [ COORDENADOR, ADMIN ]
+      - metodo: GET
+        caminho: /api/usuarios/professores/**
+        papeis: [PROFESSOR, ADMIN, COORDENADOR, ALUNO]
+      - metodo: PUT
+        caminho: /api/usuarios/professores/{id}
+        papeis: [PROFESSOR,COORNADOR ,ADMIN]
+      - metodo: DELETE
+        caminho: /api/usuarios/professores/{id}
+        papeis: [ADMIN, COORDENADOR]
+
+
+      - metodo: POST
+        caminho: /api/usuarios/admins
+        papeis: [ADMIN]
+      - metodo: GET
+        caminho: /api/usuarios/admins/**
+        papeis: [ADMIN]
+      - metodo: PUT
+        caminho: /api/usuarios/admins/{id}
+        papeis: [ADMIN]
+      - metodo: DELETE
+        caminho: /api/usuarios/admins/{id}
+        papeis: [ADMIN]
+
+
 
 
 spring:
