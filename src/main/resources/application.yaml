@@ -78,11 +78,11 @@ spring:
         webmvc:
           routes:
             - id: usuario
-              uri: http://localhost:8081
+              uri: http://localhost:8080
               predicates:
                 - Path=/api/usuarios/**
             - id: curso
-              uri: http://localhost:8082
+              uri: http://localhost:8081
               predicates:
                 - Path=/api/academico/**
 
