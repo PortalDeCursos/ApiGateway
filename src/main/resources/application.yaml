@@ -81,4 +81,8 @@ spring:
               uri: http://localhost:8081
               predicates:
                 - Path=/api/usuarios/**
+            - id: curso
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/academico/**
 
