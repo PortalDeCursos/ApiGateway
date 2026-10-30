@@ -66,6 +66,62 @@ app:
         papeis: [ADMIN]
 
 
+      - metodo: POST
+        caminho: /api/academico/campus
+        papeis: [ADMIN]
+      - metodo: GET
+        caminho: /api/academico/campus/**
+        papeis: [ALUNO, PROFESSOR, COORDENADOR, ADMIN]
+      - metodo: PUT
+        caminho: /api/academico/campus/{id}
+        papeis: [ADMIN]
+      - metodo: DELETE
+        caminho: /api/academico/campus/{id}
+        papeis: [ADMIN]
+
+
+      - metodo: POST
+        caminho: /api/academico/areas-conhecimento
+        papeis: [ADMIN]
+      - metodo: GET
+        caminho: /api/academico/areas-conhecimento/**
+        papeis: [ALUNO, PROFESSOR, COORDENADOR, ADMIN]
+      - metodo: PUT
+        caminho: /api/academico/areas-conhecimento/{id}
+        papeis: [ADMIN]
+      - metodo: DELETE
+        caminho: /api/academico/areas-conhecimento/{id}
+        papeis: [ADMIN]
+
+
+      - metodo: POST
+        caminho: /api/academico/cursos
+        papeis: [ADMIN]
+      - metodo: GET
+        caminho: /api/academico/cursos/**
+        papeis: [ALUNO, PROFESSOR, COORDENADOR, ADMIN]
+      - metodo: PUT
+        caminho: /api/academico/cursos/{id}
+        papeis: [ADMIN, COORDENADOR]
+      - metodo: DELETE
+        caminho: /api/academico/cursos/{id}
+        papeis: [ADMIN]
+
+
+      - metodo: POST
+        caminho: /api/academico/disciplinas
+        papeis: [ADMIN, COORDENADOR]
+      - metodo: GET
+        caminho: /api/academico/disciplinas/**
+        papeis: [ALUNO, PROFESSOR, COORDENADOR, ADMIN]
+      - metodo: PUT
+        caminho: /api/academico/disciplinas/{id}
+        papeis: [ADMIN, COORDENADOR]
+      - metodo: DELETE
+        caminho: /api/academico/disciplinas/{id}
+        papeis: [ADMIN, COORDENADOR]
+
+
 
 
 spring:
@@ -82,3 +138,7 @@ spring:
               predicates:
                 - Path=/api/usuarios/**
 
+            - id: academico
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/academico/**
