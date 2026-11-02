@@ -12,6 +12,18 @@ app:
         caminho: /api/usuarios/auth/login
       - metodo: POST
         caminho: /api/usuarios/alunos
+      - metodo: GET
+        caminho: /api/usuarios/professores/buscar
+      - metodo: GET
+        caminho: /api/projetos
+      - metodo: GET
+        caminho: /api/projetos/aprovados
+      - metodo: GET
+        caminho: /api/projetos/{id}
+      - metodo: GET
+        caminho: /api/projetos/{projetoId}/documentos
+      - metodo: GET
+        caminho: /api/projetos/{projetoId}/documentos/{documentoId}/download
 
     regras:
 
@@ -121,6 +133,11 @@ app:
         caminho: /api/academico/disciplinas/{id}
         papeis: [ADMIN, COORDENADOR]
 
+      # Demais rotas de projetos: apenas autenticado
+      - metodo: "*"
+        caminho: /api/projetos/**
+        papeis: []
+
 
 
 
@@ -146,3 +163,7 @@ spring:
               uri: http://localhost:8082
               predicates:
                 - Path=/api/academico/**
+            - id: projetos
+              uri: http://localhost:8083
+              predicates:
+                - Path=/api/projetos/**
