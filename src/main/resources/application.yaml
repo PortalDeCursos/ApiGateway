@@ -58,7 +58,7 @@ app:
         papeis: [PROFESSOR, ADMIN, COORDENADOR, ALUNO]
       - metodo: PUT
         caminho: /api/usuarios/professores/{id}
-        papeis: [PROFESSOR,COORNADOR ,ADMIN]
+        papeis: [PROFESSOR,COORDENADOR ,ADMIN]
       - metodo: DELETE
         caminho: /api/usuarios/professores/{id}
         papeis: [ADMIN, COORDENADOR]
