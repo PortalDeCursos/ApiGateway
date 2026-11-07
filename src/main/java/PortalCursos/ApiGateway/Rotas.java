@@ -10,8 +10,8 @@ public record Rotas(
         List<RegraRota> regras) {
 
     public record RegraRota(
-            String metodo,         // GET, POST, ... ou "*" para qualquer um
-            String caminho,        // ex: /api/usuarios/alunos/**
-            List<String> papeis) { // ex: ["ALUNO"]; vazio = só autenticado
+            String metodo,
+            String caminho,
+            List<String> papeis) {
     }
 }

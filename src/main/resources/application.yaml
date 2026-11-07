@@ -36,6 +36,9 @@ app:
       - metodo: DELETE
         caminho: /api/usuarios/alunos/{id}
         papeis: [COORDENADOR, ADMIN]
+      - metodo: PUT
+        caminho: /api/usuarios/alunos/me
+        papeis: [ ALUNO ]
 
       - metodo: POST
         caminho: /api/usuarios/coordenadores
@@ -49,6 +52,9 @@ app:
       - metodo: DELETE
         caminho: /api/usuarios/coordenadores/{id}
         papeis: [ADMIN]
+      - metodo: PUT
+        caminho: /api/usuarios/coordenadores/me
+        papeis: [ COORDENADOR ]
 
       - metodo: POST
         caminho: /api/usuarios/professores
@@ -62,6 +68,9 @@ app:
       - metodo: DELETE
         caminho: /api/usuarios/professores/{id}
         papeis: [ADMIN, COORDENADOR]
+      - metodo: PUT
+        caminho: /api/usuarios/professores/me
+        papeis: [ PROFESSOR ]
 
 
       - metodo: POST
@@ -76,6 +85,9 @@ app:
       - metodo: DELETE
         caminho: /api/usuarios/admin/{id}
         papeis: [ADMIN]
+      - metodo: PUT
+        caminho: /api/usuarios/admin/me
+        papeis: [ ADMIN ]
 
 
       - metodo: POST
