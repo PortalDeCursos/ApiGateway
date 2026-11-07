@@ -34,7 +34,7 @@ public class JwtConfig {
     JwtAuthenticationConverter jwtAuthenticationConverter() {
         var authorities = new JwtGrantedAuthoritiesConverter();
         authorities.setAuthoritiesClaimName("role");
-        authorities.setAuthorityPrefix("ROLE_"); // use "" se o token já traz ROLE_
+        authorities.setAuthorityPrefix("ROLE_");
 
         var converter = new JwtAuthenticationConverter();
         converter.setJwtGrantedAuthoritiesConverter(authorities);
