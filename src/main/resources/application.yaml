@@ -15,6 +15,8 @@ app:
       - metodo: GET
         caminho: /api/usuarios/professores/buscar
       - metodo: GET
+        caminho: /api/academico/cursos
+      - metodo: GET
         caminho: /api/projetos
       - metodo: GET
         caminho: /api/projetos/aprovados
@@ -166,11 +168,6 @@ spring:
               uri: http://localhost:8080
               predicates:
                 - Path=/api/usuarios/**
-            - id: curso
-              uri: http://localhost:8081
-              predicates:
-                - Path=/api/academico/**
-
             - id: academico
               uri: http://localhost:8082
               predicates:
@@ -179,3 +176,5 @@ spring:
               uri: http://localhost:8083
               predicates:
                 - Path=/api/projetos/**
+              filters:
+                - RewritePath=/api/(projetos(?:/.*)?), /api/projetos/$1
