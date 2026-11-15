@@ -17,6 +17,10 @@ app:
       - metodo: GET
         caminho: /api/academico/cursos
       - metodo: GET
+        caminho: /api/academico/cursos/{id}
+      - metodo: GET
+        caminho: /api/academico/disciplinas
+      - metodo: GET
         caminho: /api/projetos
       - metodo: GET
         caminho: /api/projetos/aprovados
