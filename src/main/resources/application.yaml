@@ -3,7 +3,7 @@ server:
 
 app:
   jwt:
-    secret: ${JWT_SECRET:14I15oujcYSvV7r7Lghmg+HUMJ5n8YXDYmQoyHFiWMA=}
+    secret: ${JWT_SECRET:COLOQUE_AQUI_SEU_SEGREDO_JWT-ultra-mega}
     expiration-ms: 86400000
 
   rotas:
@@ -15,15 +15,19 @@ app:
       - metodo: GET
         caminho: /api/usuarios/professores/buscar
       - metodo: GET
-        caminho: /api/projetos
+        caminho: /api/projetos/projetos
       - metodo: GET
-        caminho: /api/projetos/aprovados
+        caminho: /api/projetos/projetos/{id}
       - metodo: GET
-        caminho: /api/projetos/{id}
+        caminho: /api/projetos/projetos/em-analise
       - metodo: GET
-        caminho: /api/projetos/{projetoId}/documentos
+        caminho: /api/projetos/projetos/aprovados
+
+      # Consultas e downloads de documentos — sem login
       - metodo: GET
-        caminho: /api/projetos/{projetoId}/documentos/{documentoId}/download
+        caminho: /api/projetos/projetos/{projetoId}/documentos
+      - metodo: GET
+        caminho: /api/projetos/projetos/{projetoId}/documentos/{documentoId}/download
 
     regras:
 
@@ -145,15 +149,41 @@ app:
         caminho: /api/academico/disciplinas/{id}
         papeis: [ADMIN, COORDENADOR]
 
-      # Demais rotas de projetos: apenas autenticado
-      - metodo: "*"
-        caminho: /api/projetos/**
-        papeis: []
+      # PROJETOS
 
+      # Cadastro de projetos
+      - metodo: POST
+        caminho: /api/projetos/projetos
+        papeis: [ALUNO, PROFESSOR]
 
+      # Atualização de projetos
+      - metodo: PUT
+        caminho: /api/projetos/projetos/{id}
+        papeis: [ALUNO, PROFESSOR]
 
+      # Alteração de status
+      - metodo: PATCH
+        caminho: /api/projetos/projetos/{id}/status
+        papeis: [PROFESSOR, COORDENADOR, ADMIN]
+
+      # Exclusão de projetos
+      - metodo: DELETE
+        caminho: /api/projetos/projetos/{id}
+        papeis: [COORDENADOR, ADMIN]
+
+      # Envio de documentos
+      - metodo: POST
+        caminho: /api/projetos/projetos/{projetoId}/documentos
+        papeis: [ALUNO, PROFESSOR]
+
+      # Exclusão de documentos
+      - metodo: DELETE
+        caminho: /api/projetos/projetos/{projetoId}/documentos/{documentoId}
+        papeis: [COORDENADOR, ADMIN]
 
 spring:
+  config:
+    import: optional:file:.env[.properties]
   application:
     name: ApiGateway
 
@@ -163,14 +193,9 @@ spring:
         webmvc:
           routes:
             - id: usuario
-              uri: http://localhost:8080
-              predicates:
-                - Path=/api/usuarios/**
-            - id: curso
               uri: http://localhost:8081
               predicates:
-                - Path=/api/academico/**
-
+                - Path=/api/usuarios/**
             - id: academico
               uri: http://localhost:8082
               predicates:
