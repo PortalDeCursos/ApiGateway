@@ -131,6 +131,9 @@ app:
       - metodo: PUT
         caminho: /api/academico/cursos/{id}
         papeis: [ADMIN, COORDENADOR]
+      - metodo: PATCH
+        caminho: /api/academico/cursos/{id}/coordenador/{coordenadorId}
+        papeis: [ ADMIN ]
       - metodo: DELETE
         caminho: /api/academico/cursos/{id}
         papeis: [ADMIN]
