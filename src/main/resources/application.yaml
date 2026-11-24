@@ -23,6 +23,10 @@ app:
       - metodo: GET
         caminho: /api/projetos/projetos/aprovados
 
+      - metodo: GET
+        caminho: /api/academico/cursos/**
+        papeis: [ ALUNO, PROFESSOR, COORDENADOR, ADMIN ]
+
       # Consultas e downloads de documentos — sem login
       - metodo: GET
         caminho: /api/projetos/projetos/{projetoId}/documentos
@@ -125,9 +129,6 @@ app:
       - metodo: POST
         caminho: /api/academico/cursos
         papeis: [ADMIN]
-      - metodo: GET
-        caminho: /api/academico/cursos/**
-        papeis: [ALUNO, PROFESSOR, COORDENADOR, ADMIN]
       - metodo: PUT
         caminho: /api/academico/cursos/{id}
         papeis: [ADMIN, COORDENADOR]
