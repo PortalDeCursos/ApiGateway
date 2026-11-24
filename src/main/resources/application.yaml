@@ -31,6 +31,13 @@ app:
       - metodo: GET
         caminho: /api/academico/disciplinas/**
 
+      - metodo: POST
+        caminho: /api/usuarios/fotos
+      - metodo: GET
+        caminho: /api/usuarios/fotos/{id}
+      - metodo: PUT
+        caminho: /api/usuarios/fotos
+
       # Consultas e downloads de documentos — sem login
       - metodo: GET
         caminho: /api/projetos/projetos/{projetoId}/documentos
